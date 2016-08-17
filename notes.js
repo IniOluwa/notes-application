@@ -1,32 +1,47 @@
+class Notes {
+        constructor(author, notes){
+        this.author = author;
+        this.notes = notes;
+    }
+}
+
 class NotesApplication {
     constructor(author){
         this.author = author;
-        this.notes = [];
+        this.noteContents = [];
     }
     
-    create(note_contents){
-        this.notes.push(note_contents);
+    create(theAuthor, note){
+        var newNote = new Notes(theAuthor, note);
+        this.noteContents.push(newNote);
+        return newNote;
     }
     
-    list_notes(){
-        for(var i = 0; i < this.notes.length; i++){
-            console.log({'NOTE_ID': i});
-            console.log({'CONTENTS': this.notes[i]});
-            console.log({'By Author': this.notes[i].author});
+    listNotes(){
+        for(var i = 0; i < this.noteContents.length; i++){
+            console.log(
+                {'Note ID': i,
+                'Contents': this.noteContents[i].notes,
+                'By Author': this.noteContents[i].author
+                    }
+                );
             }
         }
 
-    get_note(note_id){
-        return this.notes[note_id];
+    getNote(noteID){
+        for (var i = 0; i < this.noteContents.length; i++){
+            if(noteID === i) console.log(this.noteContents[noteID]);
+        }
+        return 'Input a valid ID.';
     }
     
-    search_note(searchText){
-        for(var i = 0; i < this.notes.length; i++){
-            if(this.notes[i].indexOf(searchText)){
+    searchNotes(searchText){
+        for(var i = 0; i < this.noteContents.length; i++){
+            if(this.noteContents[i].indexOf(searchText)){
                 var SearchResults = console.log(
-                    {'NOTE_ID': this.note_id[i]},
-                    {'CONTENTS': this.notes[note_id][i]},
-                    {'By Author': this.notes[note_id].this.author[i]}
+                    {'NOTE_ID': i},
+                    {'CONTENTS': this.noteContents[i]},
+                    {'By Author': this.noteContents[i].author}
                 );
             }
         }
@@ -34,20 +49,22 @@ class NotesApplication {
         console.log(results);
     }
 
-    edit_note(note_id, new_note_content){
-            if(parseInt(note_id)){
-                this.notes[note_id] = new_note_content; 
-                console.log(this.notes[note_id])
-            }else{
-            return 'Input a valid note id and content.';
+    editNote(noteID, newNoteContent){
+        for (var i = 0; i < this.noteContents.length; i++){
+            if(noteID === i){
+                this.noteContents[noteID] = newNoteContent; 
+                console.log(this.noteContents[noteID]);
+            }
         }
     }
     
-    delete_note(note_id){
-        if (parseInt(note_id)){
-            this.notes[note_id] = null;
-        }else{
-            return 'Input a valid note id.';
+    deleteNote(noteID){
+        for (var i = 0; i < this.noteContents.length; i++){
+            if(noteID === i){
+                this.noteContents[noteID] = null;   
+                console.log(this.noteContents[noteID]);
+            }
         }
+        return 'Input a valid note id.';
     }
 }
