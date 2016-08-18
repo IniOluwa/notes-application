@@ -10,15 +10,15 @@ class Notes {
 // Notes application class
 class NotesApplication {
     // Initialize NotesApplication constructor
-    constructor(author){
-        this.author = author;
+    constructor(){
+        // this.author = author;
         this.noteContents = [];
     }
     
     // Note creation method
-    createNotes(theAuthor, note){
+    createNotes(author, note){
         // Create a note
-        var newNote = new Notes(theAuthor, note);
+        var newNote = new Notes(author, note);
         this.noteContents.push(newNote);
         return newNote;
     }
