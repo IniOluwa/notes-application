@@ -16,7 +16,7 @@ class NotesApplication {
     }
     
     // Note creation method
-    createNotes(author, note){
+    createNote(author, note){
         // Create a note
         var newNote = new Notes(author, note);
         this.noteContents.push(newNote);
@@ -62,7 +62,7 @@ class NotesApplication {
     editNote(noteID, newNoteContent){
        // Validate id and edit note
         if(noteID in this.noteContents){
-            this.noteContents[noteID] = newNoteContent; 
+            this.noteContents[noteID].notes = newNoteContent; 
             return this.noteContents[noteID];
         }else{
             return 'Input a valid ID.';
